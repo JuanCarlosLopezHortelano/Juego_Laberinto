@@ -85,54 +85,7 @@ class Juego():
         laberinto = self.fabricar_laberinto()
         laberinto.añadir_habitacion(habitacion1)
         laberinto.añadir_habitacion(habitacion2)
-        print("____________________EMPEZANDO EL JUEGO__________________")
-        print("\n")
-        print("En qué habitación quieres empezar?")
-        elige_habitacion = None
-
-        while elige_habitacion != "3":
-            elige_habitacion = input("Habitacion: ")
-
-            if elige_habitacion == "1":
-                print("Nos encontramos en la primera habitación")
-                print("Hacia qué dirección quieres ir?")
-
-                elige_direccion = input()
-                if elige_direccion == "norte":
-                    habitacion1.norte.entro()
-                elif elige_direccion == "este":
-                    habitacion1.este.entro()
-                elif elige_direccion == "oeste":
-                    habitacion1.oeste.entro()
-                elif elige_direccion == "sur":
-                    habitacion1.sur.entro()
-                else:
-                    print("Dirección incorrecta, opciones válidas: norte, sur, este, oeste")
-
-            elif elige_habitacion == "2":
-                print("Nos encontramos en la segunda habitación")
-                print("Hacia qué dirección quieres ir?")
-
-                elige_direccion = input()
-                if elige_direccion == "norte":
-                    habitacion2.norte.entro()
-                elif elige_direccion == "este":
-                    habitacion2.este.entro()
-                elif elige_direccion == "oeste":
-                    habitacion2.oeste.entro()
-                elif elige_direccion == "sur":
-                    habitacion2.sur.entro()
-                else:
-                    print("Dirección incorrecta, opciones válidas: norte, sur, este, oeste")
-
-            elif elige_habitacion == "3":
-                print("Saliendo del laberinto...")
-
-            else:
-                print("Elige una habitación correcta. Las opciones son 1 y 2. Ingresa 3 para salir del laberinto.")
-
-        print("Fin del laberinto.")
-        self.laberinto = laberinto
+        return laberinto
 
     def fabricar_lab4habsFMComposite(self):
 
