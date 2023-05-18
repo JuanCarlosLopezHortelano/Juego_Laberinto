@@ -5,7 +5,7 @@ from BombaDesactivadaState import BombaDesactivadaState
 
 class Bomba(Decorator):
     def __init__(self, EM):
-        self.componente = EM
+        super().__init__(EM)
         self.estado = BombaDesactivadaState()
 
     def cambiar_estado(self, nuevo_estado):

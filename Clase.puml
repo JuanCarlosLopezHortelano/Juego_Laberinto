@@ -6,6 +6,7 @@ abstract AbstractCollection
 interface List
 interface Collection
 
+
 List <|-- AbstractList
 Collection <|-- AbstractCollection
 
