@@ -147,7 +147,9 @@ class PlayGround():
               print("Nos encontramos en la primera habitación")
 
               hab = laberinto.obtenerHabitacion(3)
-              Fuego(hab).entro()
+              fuego = Fuego()
+              fuego.componente = hab
+              fuego.entro()
               print("Hacia qué dirección quieres ir?")
               elige_direccion = input()
               if elige_direccion == "norte":

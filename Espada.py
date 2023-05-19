@@ -2,9 +2,9 @@ from Decorator import Decorator
 
 
 class Espada(Decorator):
-    def __init__(self,EM):
+    def __init__(self):
+        super().__init__()
 
-        self.componente = EM
     def entro(self):
         super().entro()
         self.componente.entro()

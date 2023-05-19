@@ -2,9 +2,9 @@ from Decorator import Decorator
 
 
 class Fuego(Decorator):
-    def __init__(self,EM):
+    def __init__(self):
 
-        self.componente = EM
+        super().__init__()
     def entro(self):
         super().entro()
         self.componente.entro()

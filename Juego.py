@@ -54,6 +54,14 @@ class Juego():
     def añadir_bicho(self, bicho):
         self.bichos.append(bicho)
 
+    def fabricar_espada(self,EM):
+        espada = Espada()
+        espada.componente = EM
+        return espada
+    def fabricar_fuego(self,EM):
+        fuego = Fuego()
+        fuego.componente = EM
+        return fuego
     def fabricar_HabitacionComposite(self, id):
         hab = Habitacion(id)
         hab.ponerEN(self.fabricarNorte(), self.fabricarPared())
@@ -109,8 +117,8 @@ class Juego():
 
 
         ##DECORADORES
-        espada = Espada(self.fabricar_cofre())
-        fuego = Fuego(hab4)
+        espada = self.fabricar_espada(self.fabricar_cofre())
+        fuego = self.fabricar_fuego(hab4)
         bomba = self.fabricar_bomba(self.fabricar_cofre())
         bomba.cambiar_estado(BombaActivadaState(bomba))
         bomba2 = self.fabricar_bomba(puerta3)
