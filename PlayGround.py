@@ -116,7 +116,6 @@ class PlayGround():
               elige_direccion = input()
               if elige_direccion == "norte":
                   hab.norte.estado.resolver_acertijo()
-                  hab.norte.entro()
               elif elige_direccion == "este":
                   hab.este.entro()
               elif elige_direccion == "oeste":

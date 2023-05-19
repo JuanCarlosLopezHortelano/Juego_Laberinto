@@ -35,7 +35,8 @@ class Juego():
         return habitacion
 
     def fabricar_bomba(self, EM):
-        bomba = Bomba(EM)
+        bomba = Bomba()
+        bomba.componente = EM
         return bomba
     def fabricar_puerta(self, lado1, lado2, abierta):
         puerta = Puerta(lado1, lado2, abierta)
@@ -74,17 +75,22 @@ class Juego():
         return Oeste()
 
     def fabricar_lab2habsFM(self):
-        habitacion1 = self.fabricar_habitacion(1)
 
+        ##FABRICAMOS LAS HABITACIONES
+        habitacion1 = self.fabricar_habitacion(1)
         habitacion2 = self.fabricar_habitacion(2)
 
+        #PUERTA
         puerta = self.fabricar_puerta(habitacion1, habitacion2, True)
         habitacion1.norte = puerta
         habitacion2.sur = puerta
 
+
+        ##HACEMOS LABERINTO Y AGREGAMOS LAS HABITACION CON SU PUERTA
         laberinto = self.fabricar_laberinto()
         laberinto.añadir_habitacion(habitacion1)
         laberinto.añadir_habitacion(habitacion2)
+
         return laberinto
 
     def fabricar_lab4habsFMComposite(self):
@@ -94,13 +100,23 @@ class Juego():
         hab3 = self.fabricar_HabitacionComposite(3)
         hab4 = self.fabricar_HabitacionComposite(4)
 
-        fuego = Fuego(hab4)
+
+
         puerta1 = self.fabricar_puerta(hab1, hab2, True)
         puerta2 = self.fabricar_puerta(hab2, hab4, True)
         puerta3 = self.fabricar_puerta(hab4, hab3, True)
         puerta4 = self.fabricar_puerta(hab4, hab1, False)
 
+
+        ##DECORADORES
         espada = Espada(self.fabricar_cofre())
+        fuego = Fuego(hab4)
+        bomba = self.fabricar_bomba(self.fabricar_cofre())
+        bomba.cambiar_estado(BombaActivadaState(bomba))
+        bomba2 = self.fabricar_bomba(puerta3)
+        bomba2.cambiar_estado(BombaActivadaState(bomba2))
+
+
 
         hab1.ponerEN(self.fabricarEste(), puerta1)
         hab1.ponerEN(self.fabricarSur(), puerta4)
@@ -110,13 +126,11 @@ class Juego():
         hab3.ponerEN(self.fabricarSur(), espada)
         hab4.ponerEN(self.fabricarNorte(), puerta2)
 
-        bomba = self.fabricar_bomba(self.fabricar_cofre())
-        bomba.cambiar_estado(BombaActivadaState(bomba))
+
 
         hab2.ponerEN(self.fabricarNorte(), bomba)
 
-        bomba2 = self.fabricar_bomba(puerta3)
-        bomba2.cambiar_estado(BombaActivadaState(bomba2))
+
         hab3.ponerEN(self.fabricarEste(), bomba2)
         hab4.ponerEN(self.fabricarOeste(), bomba2)
 
